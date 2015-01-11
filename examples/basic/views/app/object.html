@@ -1,0 +1,30 @@
+{{template "header" }}
+<nav>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li>Controller</li>
+		<li><a href="/crud">Crud</a></li>
+		<li><a href="/markdown">Markdown</a></li>
+		<li><a href="/websocket">Websocket</a></li>
+		<li><a href="/sql">Sql Util</a></li>
+	</ul>
+</nav>
+
+<div class="content">
+	<h1>{{.Title}}</h1>
+	<h3>Features</h3>
+	<ul>
+		<li>ServeText(text string)</li>
+		<li>ServeHtml(html string)</li>
+		<li>ServeTpl(tmpls []string, data interface{})</li>
+		<li>ServeJson(data interface{})</li>
+	</ul>
+	<h3>Sample</h3>
+	<ul>
+		<li><a href="/object/text">ServeText</a></li>
+		<li><a href="/object/html">ServeHtml</a></li>
+		<li><a href="/object/template">ServeTpl</a></li>
+		<li><a href="/object/json">ServeJson</a></li>
+	</ul>
+</div
+{{template "footer"}}
