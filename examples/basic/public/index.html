@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+	<title>GoLang Basic</title>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		nav {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			border-top: 1px solid #blue;
+			border-bottom: 1px solid #blue;
+			background-color: #fff;
+		}
+
+		nav ul {
+			padding: 10px;
+			margin: 0;
+			border-bottom: 1px solid #ccc;
+		}
+		nav ul li {
+			display: inline-block;
+			padding-right: 8px;
+		}
+
+		.content {
+			padding: 24px 10px 10px 10px;
+		}
+
+		.footer {
+			border-bottom: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<nav>
+	<ul>
+		<li>Home</li>
+		<li><a href="/object">Controller</a></li>
+		<li><a href="/crud">Crud</a></li>
+		<li><a href="/markdown">Markdown</a></li>
+		<li><a href="/websocket">Websocket</a></li>
+		<li><a href="/sql">Sql Util</a></li>
+	</ul>
+</nav>
+
+<div class="content">
+	<h1>Nexigo</h1>
+	<p>Nexio is basic simple MVC framework using golang</p>
+	<p>Package Nexigo: </p>
+	<p>
+		<pre>import "github.com/nexigolabs/nexigo"</pre>
+	</p>
+	<h3>Features</h3>
+	<ul>
+		<li>Routing</li>
+		<li>Serve Http</li>
+		<li>Controller</li>
+	</ul>
+	<h3>Routing</h3>
+	<p>Example :</p>
+	<p>
+		<pre>
+import (
+	"github.com/nexigolabs/nexigo"
+)
+
+func main() {
+	nexigo.Route("/", &ctl.HomeController{})
+	nexigo.Route("/crud/", &ctl.CrudController{})
+	nexigo.Route("/markdown", &ctl.MarkdownController{})
+	nexigo.Route("/websocket", &ctl.WebsocketController{})
+	nexigo.Route("/sql", &ctl.SqlController{})
+	...
+}
+			</pre>		
+		</p>
+
+		<h3>Serve Http</h3>
+		<p>Example :</p>
+		<p>
+			<pre>
+import (
+	"github.com/nexigolabs/nexigo"
+)
+
+func main() {
+	...
+	nexigo.Run()
+}
+		</pre>		
+	</p>
+</div>
+<div class="footer"><div>
+</body>
+</html>

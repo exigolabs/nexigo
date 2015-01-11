@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Submit Form</title>
+	<script type="text/javascript" src="/js/libs/jquery.js"></script>
+</head>
+<body>
+	<form method="POST" action="result">
+		<div>
+			<label>Name </label>
+			<div>
+				<input id="name" mame="name" style="width:300px"></input>
+			</div>
+		</div>
+		<div>
+			<label>Comment </label>
+			<div>
+				<textarea id="comment" mame="comment" rows="4" style="width:300px"></textarea>
+			</div>
+		</div>
+		<div style="padding:5px 0">
+			<input type="submit"></input>
+		</div>
+	</form>
+	<label id="result"></label>
+	<script>
+		$(function () {
+			$('form').on('submit', function (e) {
+				e.preventDefault();
+				var data = {
+					name:$('#name').val(),
+					comment:$('#comment').val()
+				}
+
+				console.log(data);
+				$.post("/object/result", data, function (r) {
+					console.log(r);
+					$("#result").html(JSON.stringify(r))
+				})
+			})
+		})
+	</script>
+</body>
+</html>
+

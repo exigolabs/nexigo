@@ -11,6 +11,7 @@ var (
 	DefaultPort = "8080"
 	PublicPath  = "public"
 	HttpContext = ContextHandler{}
+	Config      = make(map[string]interface{})
 )
 
 type RouteHandler struct {
@@ -28,6 +29,8 @@ func Route(path string, ctl interface{}) {
 
 func Run() {
 	routes := HttpContext.routes
+
+	http.Handle("/", http.FileServer(http.Dir(PublicPath)))
 
 	for i := 0; i < len(routes); i++ {
 		route := routes[i]
@@ -55,6 +58,9 @@ func Run() {
 					method := strings.ToLower(typeCont.Method(i).Name)
 					if method == action {
 						// reflect.ValueOf(route.IController).Method(i).Call([]reflect.Value{})
+
+						fmt.Println("form ori", r)
+
 						reflect.ValueOf(route.IController).Method(i).Call([]reflect.Value{reflect.ValueOf(w), reflect.ValueOf(r)})
 						ctrlObj := reflect.ValueOf(route.IController).Elem().Field(0).Interface().(Controller)
 						ctrlObj.RunAction(w, r)
@@ -68,7 +74,22 @@ func Run() {
 		})
 	}
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+DefaultPort, nil)
+}
+
+func SetConfig(name string, value interface{}) {
+	Config[name] = value
+
+	switch name {
+	case "public":
+		PublicPath = value.(string)
+	case "port":
+		DefaultPort = value.(string)
+	}
+}
+
+func GetConfig(name string) interface{} {
+	return Config[name]
 }
 
 func Text() {

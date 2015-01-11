@@ -38,6 +38,15 @@ func (c *ObjectController) Json(w http.ResponseWriter, r *http.Request) {
 	c.ServeJson(data)
 }
 
+func (c *ObjectController) Form(w http.ResponseWriter, r *http.Request) {
+	c.ServeTpl([]string{"views/app/object/form.html"}, nil)
+}
+
+func (c *ObjectController) Result(w http.ResponseWriter, r *http.Request) {
+	// fmt.Println("form", r.Form)
+	c.ServeJson(r)
+}
+
 func test() {
 	data := make(map[string]interface{})
 	data["Title"] = "Template"

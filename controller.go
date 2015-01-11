@@ -54,12 +54,6 @@ func (c *Controller) RunAction(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(strings.TrimSpace(c.Text)))
 	case "tpl":
 		t := template.Must(template.ParseFiles(c.Templates...))
-		// t, err := template.ParseFiles("views/app/" + c.Template)
-		// if err != nil {
-		// 	panic(err)
-		// }
-
-		fmt.Println("tpl-data :", c.Templates, c.Data)
 		t.Execute(w, c.Data)
 	case "json":
 		js, err := json.Marshal(c.Data)
