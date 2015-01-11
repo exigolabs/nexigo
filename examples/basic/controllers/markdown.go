@@ -14,3 +14,7 @@ func (c *MarkdownController) Index(w http.ResponseWriter, r *http.Request) {
 	data["Title"] = "Markdown"
 	c.ServeTpl([]string{"views/app/markdown.html", "views/header.html", "views/footer.html"}, data)
 }
+
+func (c *MarkdownController) Hello(w http.ResponseWriter, r *http.Request) {
+	c.ServeHtml("<h1>demo</h1> asrasratsas")
+}
