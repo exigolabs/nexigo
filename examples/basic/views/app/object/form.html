@@ -31,9 +31,7 @@
 					comment:$('#comment').val()
 				}
 
-				console.log(data);
 				$.post("/object/result", data, function (r) {
-					console.log(r);
 					$("#result").html(JSON.stringify(r))
 				})
 			})

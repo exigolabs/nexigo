@@ -43,8 +43,13 @@ func (c *ObjectController) Form(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *ObjectController) Result(w http.ResponseWriter, r *http.Request) {
-	// fmt.Println("form", r.Form)
-	c.ServeJson(r)
+	r.ParseForm()
+
+	result := make(map[string]interface{})
+	for k, v := range r.PostForm {
+		result[k] = v[0]
+	}
+	c.ServeJson(result)
 }
 
 func test() {

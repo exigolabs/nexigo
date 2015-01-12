@@ -16,8 +16,10 @@ func (c *HomeController) Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *HomeController) Public(w http.ResponseWriter, r *http.Request) {
-	data := make(map[string]string)
-	data["public"] = xgo.PublicPath
-	data["port"] = xgo.DefaultPort
+	data := make(map[string]interface{})
+	data["public"] = xgo.GetConfig("public")
+	data["port"] = xgo.GetConfig("port")
+	data["port"] = xgo.GetConfig("driverdb")
+	data["port"] = xgo.GetConfig("conninfo")
 	c.ServeJson(data)
 }
